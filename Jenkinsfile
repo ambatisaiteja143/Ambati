@@ -3,12 +3,22 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'echo "Building the project"'
+                sh 'npm install'
+            }
+        }
+        stage('Lint') {
+            steps {
+                sh 'npm run lint'
             }
         }
         stage('Test') {
             steps {
-                sh 'echo "Running tests"'
+                sh 'npm test'
+            }
+        }
+        stage('Package') {
+            steps {
+                sh 'npm run build'
             }
         }
         stage('Deploy') {
